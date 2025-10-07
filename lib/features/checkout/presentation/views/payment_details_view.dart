@@ -5,7 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:payment/core/utils/appStyles.dart';
 import 'package:payment/features/checkout/presentation/views/widgets/paymentMethods_listView.dart';
 class PaymentDetailsView extends StatelessWidget {
-   PaymentDetailsView({super.key});
+  const PaymentDetailsView({super.key});
 
 
   @override
