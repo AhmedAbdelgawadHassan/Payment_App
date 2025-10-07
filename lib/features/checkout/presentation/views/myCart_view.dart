@@ -3,8 +3,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:payment/core/utils/appStyles.dart';
 import 'package:payment/core/widgets/custom_button.dart';
-import 'package:payment/features/checkout/presentation/widgets/order_info_item.dart';
-import 'package:payment/features/checkout/presentation/widgets/total_price_item.dart';
+import 'package:payment/features/checkout/presentation/views/payment_details_view.dart';
+import 'package:payment/features/checkout/presentation/views/widgets/order_info_item.dart';
+import 'package:payment/features/checkout/presentation/views/widgets/total_price_item.dart';
 
 class MycartView extends StatelessWidget {
   const MycartView({super.key});
@@ -47,7 +48,11 @@ class MycartView extends StatelessWidget {
             TotalPriceItem(title: 'Total', value: '\$50.97'),
             Gap(20),
             CustomButton(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return PaymentDetailsView();
+                },));
+              },
             )
             ,Gap(30)
            
