@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 
 class CustomCreditCard extends StatefulWidget {
-  const CustomCreditCard({super.key});
+  const CustomCreditCard({super.key, required this.formKey});
+  final GlobalKey<FormState> formKey;
 
   @override
   State<CustomCreditCard> createState() => _CustomCreditCardState();
@@ -13,7 +14,6 @@ class _CustomCreditCardState extends State<CustomCreditCard> {
 
   bool showBackView = false;
 
-  GlobalKey<FormState> formKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class _CustomCreditCardState extends State<CustomCreditCard> {
          cvvCode=CreditCardModel.cvvCode;
          showBackView=CreditCardModel.isCvvFocused;
          setState(() {});},  // بحط setstate عشان البيانات اللي المستخدم بيخدلها تسمع علطول في ال كؤيتيد كاؤد 
-          formKey: formKey,  // formkey for Validation
+          formKey: widget.formKey,  // formkey for Validation
         ),
       ],
     );

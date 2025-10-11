@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:payment/core/utils/appStyles.dart';
+import 'package:payment/core/widgets/custom_button.dart';
 import 'package:payment/features/checkout/presentation/views/widgets/custom_credit_card.dart';
 import 'package:payment/features/checkout/presentation/views/widgets/paymentMethods_listView.dart';
 
 class PaymentDetailsView extends StatelessWidget {
-  const PaymentDetailsView({super.key});
+   PaymentDetailsView({super.key});
+    GlobalKey<FormState> formKey = GlobalKey();
+
 
 
   @override
@@ -27,22 +30,32 @@ class PaymentDetailsView extends StatelessWidget {
           ),
           title: Text('Payment Details', style: Appstyles.style25),
         ),
-        body: SingleChildScrollView(
-          child: Center(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-              child: Column(
-                children: [
-                  Gap(10),
-                  PaymentmethodsListview(),
-                  Gap(30),
-                  CustomCreditCard()
-                
-                ],
-              ),
+        body: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: Center(child: PaymentmethodsListview()),
             ),
-          ),
-        ),
+            SliverToBoxAdapter(child: Gap(20),),
+            SliverToBoxAdapter(
+              child: CustomCreditCard(formKey: formKey,),
+            ),
+            SliverFillRemaining(child: Align(
+              alignment: AlignmentGeometry.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 20,left: 60,right: 60),
+                child: CustomButton(
+                  onTap: (){
+                    if(formKey.currentState!.validate())
+                    {
+                      formKey.currentState!.save();
+                    }
+                    
+                  },
+                   title: 'Pay',
+                   ),
+              )),)
+          ],
+        )
         
       ),
     );

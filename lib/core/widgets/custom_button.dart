@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:payment/core/utils/appStyles.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, required this.onTap});
+  const CustomButton({super.key, required this.onTap, required this.title});
   final VoidCallback onTap;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
-    return  GestureDetector(
+    return  InkWell(
       onTap: onTap,
       child: Container(
                 alignment: Alignment.center,
@@ -17,7 +18,7 @@ class CustomButton extends StatelessWidget {
                   color: Color(0xff33A652),
                   borderRadius: BorderRadius.circular(15)
                 ),
-                child: Text('Complete Payment',style:Appstyles.style22,),
+                child: Text(title,style:Appstyles.style22,),
               ),
     );
   }
