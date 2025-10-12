@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:payment/core/utils/appStyles.dart';
 import 'package:payment/core/widgets/custom_button.dart';
+import 'package:payment/features/checkout/presentation/views/thankYou_view.dart';
 import 'package:payment/features/checkout/presentation/views/widgets/custom_credit_card.dart';
 import 'package:payment/features/checkout/presentation/views/widgets/paymentMethods_listView.dart';
 
@@ -45,11 +46,12 @@ class PaymentDetailsView extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 20,left: 60,right: 60),
                 child: CustomButton(
                   onTap: (){
-                    if(formKey.currentState!.validate())
+                    if(formKey.currentState!.validate())  // validate user inputs
                     {
-                      formKey.currentState!.save();
+                      formKey.currentState!.save();   
                     }
-                    
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => ThankyouView(),));
+
                   },
                    title: 'Pay',
                    ),
